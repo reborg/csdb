@@ -1,5 +1,7 @@
 # CSDB
 
+WARNING: this is completely work in progress.
+
 ## Introduction
 
 CSDB is a database engine using CSV (Comma Separated Values) as the main persistent format. You can point CSDB to a folder of CSV files and CSDB will guess shape and relationships between them. You're then free to query the dataset using conventional SQL (or perhaps Datalog, or even predicate logic). For example (after unzipping the 2 files in `datasets/moma-data`):
