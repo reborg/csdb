@@ -14,3 +14,4 @@ pom.xml.asc
 datasets/*
 !datasets/moma-data/Artists.csv.gz
 !datasets/moma-data/Artworks.csv.gz
+doc/other.md
