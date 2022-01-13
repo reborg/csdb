@@ -72,7 +72,6 @@
   (let [attributes (map compile select-list)
         from (compile from-clause)
         where (compile where-clause)]
-    (println "###" where)
     :here))
 
 (defn sql

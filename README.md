@@ -7,9 +7,7 @@ WARNING: this is completely work in progress.
 CSDB is a database engine using CSV (Comma Separated Values) as the main persistent format. You can point CSDB to a folder of CSV files and CSDB will guess shape and relationships between them. You're then free to query the dataset using conventional SQL (or perhaps Datalog, or even predicate logic). For example (after unzipping the 2 files in `datasets/moma-data`):
 
 ```clojure
-(require '[csdb.core :as csdb]
-         '[csdb.sql :refer [select from where]]
-         '[csdb.datalog :refer [:-]])
+(require '[csdb.core :as csdb])
 
 (csdb/default! "datasets/moma-data")
 (csdb/sql "SELECT ConstituentID, DisplayName, Nationality
@@ -28,7 +26,7 @@ CSDB is a database engine using CSV (Comma Separated Values) as the main persist
 
 ## Configuration
 
-CSDB will guess shape and relationships between the CSV files in a folder. This might not be sufficient if the files have very different extensions, formats or header names.
+CSDB will try to guess shape and relationships between the CSV files in a folder, a common case if the files are exported from a working database. However, this might not be sufficient if the files have very different extensions, formats or header names. In this case you need to provide CSDB with some relevant configuration data.
 
 ## Large CSV perftest
 
@@ -62,7 +60,7 @@ cd ..
 
 ## License
 
-Copyright © 2021 JUXT ltd
+Copyright © 2022 JUXT ltd
 
 This program and the accompanying materials are made available under the
 terms of the Eclipse Public License 2.0 which is available at
