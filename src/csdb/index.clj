@@ -1,6 +1,7 @@
 (ns csdb.index
   (:require [clojure.java.io :as io]
-            [clojure.string :as string])
+            [clojure.string :as string]
+            [csdb.encoding :as enc])
    (:import [java.io RandomAccessFile File]
             [com.univocity.parsers.csv CsvParserSettings CsvParser]
             [com.univocity.parsers.common.processor RowListProcessor]))
@@ -44,9 +45,6 @@
     (finally
      (.stopParsing parser)))))
 
-(defn to-utf8 [^String s]
-  (String. (.getBytes s "ISO-8859-1") "UTF-8"))
-
 (defn fetch
   "Given a an offset-index created with create-offset-index,
   fetch the value for key `k` in file `file` and separator
@@ -62,7 +60,7 @@
        (let [header (.readLine (doto raf (.seek 0)))
              line (.readLine (doto raf (.seek offset)))]
          (zipmap
-          (string/split (to-utf8 header) sep)
+          (string/split (enc/to-utf8 header) sep)
           (into [] (line-parser line))))))))
 
 (defn reader*
